@@ -41,9 +41,13 @@ jobs:
             py.test ./tedana/tests/test_tedana.py
           no_output_timeout: "40m"
           post: bash <(curl -s https://codecov.io/bash)
-
+  build:
+    machine: true
+    steps:
+      -checkout
      # bulid tedana container and push to dockerhub
-     - run: 
+     - run:
+        name: build tedana
         command: |
           docker build -f Dockerfile_perturb -t tedana_perturb .
           docker tag nih-fmrif/tedana:$CIRCLE_BUILD_NUM-${CIRCLE_SHA1:0:6} nih-fmrif/tedana:perturb
