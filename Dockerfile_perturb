@@ -1,0 +1,8 @@
+FROM emdupre/meica-docker:0.0.3
+
+COPY . /perturb/code
+COPY ./notebooks /perturb/working/code
+
+
+RUN /bin/bash "/perturb/code/setup.sh"
+
